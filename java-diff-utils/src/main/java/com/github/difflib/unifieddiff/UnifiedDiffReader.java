@@ -253,6 +253,8 @@ public final class UnifiedDiffReader {
     private int new_size;
     private int delLineIdx = 0;
     private int addLineIdx = 0;
+    private int additions = 0;
+    private int deletions = 0;
 
     private void finalizeChunk() {
         if (!originalTxt.isEmpty() || !revisedTxt.isEmpty()) {
@@ -266,7 +268,11 @@ public final class UnifiedDiffReader {
             addLineIdxList.clear();
             delLineIdxList.clear();
             delLineIdx = 0;
+            actualFile.setDeletions(deletions);
+            deletions = 0;
             addLineIdx = 0;
+            actualFile.setAdditions(additions);
+            additions = 0;
         }
     }
 
@@ -282,6 +288,7 @@ public final class UnifiedDiffReader {
         String cline = line.substring(1);
         revisedTxt.add(cline);
         addLineIdx++;
+        additions++;
         addLineIdxList.add(new_ln - 1 + addLineIdx);
     }
 
@@ -289,6 +296,7 @@ public final class UnifiedDiffReader {
         String cline = line.substring(1);
         originalTxt.add(cline);
         delLineIdx++;
+        deletions++;
         delLineIdxList.add(old_ln - 1 + delLineIdx);
     }
 
