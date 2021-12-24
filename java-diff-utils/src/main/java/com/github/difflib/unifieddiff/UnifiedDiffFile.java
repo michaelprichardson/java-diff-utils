@@ -37,6 +37,8 @@ public final class UnifiedDiffFile {
     private Patch<String> patch = new Patch<>();
     private boolean noNewLineAtTheEndOfTheFile = false;
     private Integer similarityIndex;
+    private int additions;
+    private int deletions;
 
     public String getDiffCommand() {
         return diffCommand;
@@ -96,6 +98,22 @@ public final class UnifiedDiffFile {
 
     public void setSimilarityIndex(Integer similarityIndex) {
         this.similarityIndex = similarityIndex;
+    }
+
+    public int getAdditions() {
+        return additions;
+    }
+
+    public void setAdditions(int additions) {
+        this.additions = additions;
+    }
+
+    public int getDeletions() {
+        return deletions;
+    }
+
+    public void setDeletions(int deletions) {
+        this.deletions = deletions;
     }
 
     public String getRenameFrom() {
