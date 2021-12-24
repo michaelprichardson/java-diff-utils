@@ -124,6 +124,8 @@ public class UnifiedDiffReaderTest {
         UnifiedDiffFile file1 = diff.getFiles().get(0);
         assertThat(file1.getFromFile()).isEqualTo(".vhd");
         assertThat(file1.getPatch().getDeltas().size()).isEqualTo(1);
+        assertThat(file1.getAdditions()).isEqualTo(2);
+        assertThat(file1.getDeletions()).isEqualTo(2);
 
         assertThat(diff.getTail()).isNull();
     }
@@ -138,6 +140,7 @@ public class UnifiedDiffReaderTest {
         UnifiedDiffFile file1 = diff.getFiles().get(0);
         assertThat(file1.getFromFile()).isEqualTo("Main.java");
         assertThat(file1.getPatch().getDeltas().size()).isEqualTo(1);
+        assertThat(file1.getAdditions()).isEqualTo(2);
 
         assertThat(diff.getTail()).isNull();
         assertThat(diff.getHeader()).isNull();
@@ -155,10 +158,14 @@ public class UnifiedDiffReaderTest {
         UnifiedDiffFile file1 = diff.getFiles().get(0);
         assertThat(file1.getFromFile()).isEqualTo("f1");
         assertThat(file1.getPatch().getDeltas().size()).isEqualTo(1);
+        assertThat(file1.getAdditions()).isEqualTo(1);
+        assertThat(file1.getDeletions()).isEqualTo(1);
 
         UnifiedDiffFile file2 = diff.getFiles().get(1);
         assertThat(file2.getFromFile()).isEqualTo("f2");
         assertThat(file2.getPatch().getDeltas().size()).isEqualTo(1);
+        assertThat(file2.getAdditions()).isEqualTo(1);
+        assertThat(file2.getDeletions()).isEqualTo(1);
 
         assertThat(diff.getTail()).isNull();
     }
